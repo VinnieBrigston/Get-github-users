@@ -21,21 +21,21 @@ class Users extends Component {
 	render(){
 		const { users } = this.props;
 		return(
-      <div>
-        {
-          users.length
-          ? <div>
+			<div>
+				{
+					users.length
+					? <div>
 							<ListOfUsers data={users} />
-							<button 
+							<button
 								className="users__more-handler"
 								onClick={this.getMoreUsers}
 							>
 								Get more!
 							</button>
 						</div>
-          : <Preloader />
+					: <Preloader />
 				}
-      </div>
+			</div>
 		)
 	}
 }

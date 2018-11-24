@@ -14,15 +14,15 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
 	<Provider store={createStoreWithMiddleware(rootReducer)}>
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/" exact component={Users} />
-          <Route path="/users/:name" exact component={User} />
-        </Switch>
-      </div>
-    </Router>
-  </Provider>,
+		<Router>
+			<div>
+				<Switch>
+					<Route path="/" exact component={Users} />
+					<Route path="/users/:name" exact component={User} />
+				</Switch>
+			</div>
+		</Router>
+	</Provider>,
 	document.getElementById('root'));
 
 serviceWorker.unregister();

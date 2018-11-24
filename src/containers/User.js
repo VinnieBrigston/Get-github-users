@@ -39,9 +39,9 @@ class User extends Component {
 			<div>
 				{
 					data
-					? <UserInfo 
-							data={data} 
-							followersList={followersList} 
+					? <UserInfo
+							data={data}
+							followersList={followersList}
 							followingList={followingList}
 						/>
 					: <Preloader />

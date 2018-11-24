@@ -9,7 +9,7 @@ const API_URL = 'https://api.github.com/users';
 
 export function fetchUsers(lastId = null) {
 	return (dispatch) => {
-		axios.get(API_URL, lastId 
+		axios.get(API_URL, lastId
 				? {
 					params:{
 						per_page: 30,

@@ -7,7 +7,7 @@ const initialState={
 }
 export default function(state = initialState,action){
 	switch (action.type) {
-    case GET_USER:
+		case GET_USER:
 			return {...state, data : action.user};
 		case GET_USER_FOLLOWERS:
 			return {...state, followers : action.payload};
