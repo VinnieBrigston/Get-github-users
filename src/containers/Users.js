@@ -1,41 +1,31 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers,fetchMoreUsers } from '../actions';
+import { fetchUsers } from '../actions';
 import ListOfUsers from '../components/ListOfUsers';
 import Preloader from '../components/Preloader';
 
 class Users extends Component {
-	constructor(props){
-		super(props);
-		this.state={
-			allUsers: []
-		}
-	}
 
 	componentDidMount(){
 		const { fetchUsers } = this.props;
 		fetchUsers();
 	}
 	getMoreUsers = () =>{
-		const { users,fetchMoreUsers } = this.props;
-		const list = users.list!==null ? users.list : null;
-		if(list!==null){
-			const countOfUsers = list.length;
-			const lastInList = list[countOfUsers-1];
-			const lastId = lastInList.id;
-			fetchMoreUsers(lastId);
+		const { users,fetchUsers } = this.props;
+		if(users.length){
+			const lastId = users[users.length - 1].id;
+			fetchUsers(lastId);
 		}
 	}
 
 	render(){
 		const { users } = this.props;
-		const listOfUsers = users.list!==null ? users.list : false;
 		return(
       <div>
         {
-          listOfUsers
+          users.length
           ? <div>
-							<ListOfUsers data={listOfUsers} />
+							<ListOfUsers data={users} />
 							<button 
 								className="users__more-handler"
 								onClick={this.getMoreUsers}
@@ -55,4 +45,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { fetchUsers,fetchMoreUsers })(Users);
+export default connect(mapStateToProps, { fetchUsers })(Users);

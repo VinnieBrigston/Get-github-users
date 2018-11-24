@@ -7,25 +7,19 @@ export const GET_USER_FOLLOWERS = 'get_user_followers';
 export const GET_USER_FOLLOWING = 'get_user_following';
 const API_URL = 'https://api.github.com/users';
 
-export function fetchUsers() {
+export function fetchUsers(lastId = null) {
 	return (dispatch) => {
-		axios.get(API_URL)
+		axios.get(API_URL, lastId 
+				? {
+					params:{
+						per_page: 30,
+						since: lastId
+					}
+				}
+				: undefined
+		)
 		.then((res) =>{
 			dispatch({type: GET_USERS,users: res.data})
-		})
-	}
-}
-
-export function fetchMoreUsers(lastId) {
-	return (dispatch) => {
-		axios.get(API_URL,{
-			params:{
-				per_page: 30,
-				since: lastId
-			}
-		})
-		.then((res) =>{
-			dispatch({type: GET_MORE_USERS,additional: res.data})
 		})
 	}
 }
@@ -34,7 +28,7 @@ export function fetchUser(userName,callbackArray) {
 	return (dispatch) => {
 		axios.get(`${API_URL}/${userName}`)
 			.then((res) =>{
-				dispatch({type: GET_USER,singleUser: res.data})
+				dispatch({type: GET_USER,user: res.data})
 				if(Array.isArray(callbackArray)){
 					callbackArray.length && callbackArray.forEach(item =>{
 						if(typeof item === 'function'){
@@ -46,20 +40,11 @@ export function fetchUser(userName,callbackArray) {
 	}
 }
 
-export function fetchFollowers(url) {
+export function fetchContent(url,type) {
 	return (dispatch) => {
 		axios.get(url)
 			.then((res) =>{
-				dispatch({type: GET_USER_FOLLOWERS,followers: res.data})
-			})
-	}
-}
-
-export function fetchFollowing(url) {
-	return (dispatch) => {
-		axios.get(url)
-			.then((res) =>{
-				dispatch({type: GET_USER_FOLLOWING,following: res.data})
+				dispatch({type: type, payload: res.data})
 			})
 	}
 }

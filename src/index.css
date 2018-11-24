@@ -92,13 +92,13 @@ code {
 
 .user__login{
   color: #000;
-  font-size: 22px;
+  font-size: 2.2rem;
   margin-bottom: 10px;
 }
 
 .user__link{
   color: #c1c1c1;
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .user-info{
@@ -198,6 +198,11 @@ code {
   display: inline-block;
   margin-right: 1%;
   margin-bottom: 1%;
+}
+
+.followers-list__user{
+  display: inline-block;
+  font-size: 1.6rem;
 }
 
 .back-button{
