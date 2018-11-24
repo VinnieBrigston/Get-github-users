@@ -5,7 +5,6 @@ import ListOfUsers from '../components/ListOfUsers';
 import Preloader from '../components/Preloader';
 
 class Users extends Component {
-
 	componentDidMount(){
 		const { fetchUsers } = this.props;
 		fetchUsers();
